@@ -1,11 +1,41 @@
 ## Docker commands used to build the application 
-# TODO: insert the docker build command
+docker build -t techtrends -f ./Dockerfile .
 
 ## Docker commands used to run the application
-# TODO: insert the docker run command
+docker run -d -p 7111:3111 techtrends
 
 ## Docker commands used to get the application logs
-# TODO: insert the docker logs command
+docker logs 8443dd29f510
 
 ## Logs from the container running the TechTrends application
-# TODO: paste logs from the Docker container 
+ * Serving Flask app 'app' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://172.17.0.2:3111/ (Press CTRL+C to quit)
+INFO:werkzeug:172.17.0.1 - - [09/Mar/2023 17:36:15] "GET /metrics HTTP/1.1" 200 -
+INFO:app:About us page was rendered
+INFO:werkzeug:172.17.0.1 - - [09/Mar/2023 17:36:19] "GET /about HTTP/1.1" 200 -
+INFO:werkzeug:172.17.0.1 - - [09/Mar/2023 17:36:19] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:app:testing health endpoint
+INFO:werkzeug:172.17.0.1 - - [09/Mar/2023 17:36:26] "GET /healthz HTTP/1.1" 200 -
+INFO:werkzeug:172.17.0.1 - - [09/Mar/2023 17:36:29] "GET /metrics HTTP/1.1" 200 -
+INFO:werkzeug:172.17.0.1 - - [09/Mar/2023 17:36:35] "GET /create HTTP/1.1" 200 -
+INFO:werkzeug:172.17.0.1 - - [09/Mar/2023 17:36:35] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:app:03/09/2023, 17:36:46 | Page with title "Manavi 3" created
+INFO:werkzeug:172.17.0.1 - - [09/Mar/2023 17:36:46] "POST /create HTTP/1.1" 302 -
+INFO:werkzeug:172.17.0.1 - - [09/Mar/2023 17:36:46] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:172.17.0.1 - - [09/Mar/2023 17:36:46] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:werkzeug:172.17.0.1 - - [09/Mar/2023 17:36:49] "GET /metrics HTTP/1.1" 200 -
+INFO:app:03/09/2023, 17:38:42 | "KubeCon + CloudNativeCon 2021" article retrieved successfully
+INFO:werkzeug:172.17.0.1 - - [09/Mar/2023 17:38:42] "GET /2 HTTP/1.1" 200 -
+INFO:werkzeug:172.17.0.1 - - [09/Mar/2023 17:38:42] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:app:03/09/2023, 17:38:45 | Post with "9" does not exist
+INFO:werkzeug:172.17.0.1 - - [09/Mar/2023 17:38:45] "GET /9 HTTP/1.1" 404 -
+INFO:werkzeug:172.17.0.1 - - [09/Mar/2023 17:38:45] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:app:03/09/2023, 17:38:51 | Post with "13" does not exist
+INFO:werkzeug:172.17.0.1 - - [09/Mar/2023 17:38:51] "GET /13 HTTP/1.1" 404 -
+INFO:werkzeug:172.17.0.1 - - [09/Mar/2023 17:38:51] "GET /static/css/main.css HTTP/1.1" 304 -
