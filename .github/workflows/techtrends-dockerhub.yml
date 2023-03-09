@@ -1,0 +1,49 @@
+#Basic github action flow to build and push the docker image for a python web application
+
+name: TechTrends - Package with Docker
+
+#This is for when the github action will run. It will run on push or pull request but
+#only for the master branch
+on:
+  push:
+    branches: [ main ]
+
+#A workflow run is made of one or more jobs that run commands sequentially or in parallel
+jobs:
+  #This workflow contains one job that is building the image
+  build:
+    #The type of github runner that will execute the job
+    runs-on: ubuntu-latest
+    #Steps that represent the sequence of tasks that will be executed in this job
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      -
+        name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          file: ./Dockerfile
+          push: true
+          tags: manavisingh/techtrends:latest
